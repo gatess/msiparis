@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+
+        <mapping class="com.mobilsiparis.hibernateclasses.kategori.Kategori"/>
+        <mapping class="com.mobilsiparis.hibernateclasses.ozeldurum.OzelDurum"/>
+        <mapping class="com.mobilsiparis.hibernateclasses.urun.Urun"/>
+        <mapping class="com.mobilsiparis.hibernateclasses.siparis.Siparis"/>
+        <mapping class="com.mobilsiparis.hibernateclasses.siparisurun.SiparisUrun"/>
+        <mapping class="com.mobilsiparis.hibernateclasses.garsonistek.GarsonIstek"/>
+        <mapping class="com.mobilsiparis.hibernateclasses.user.User"/>
+        <mapping class="com.mobilsiparis.hibernateclasses.urundetay.UrunDetay"/>
+        <mapping class="com.mobilsiparis.hibernateclasses.masa.Masa"/>
+    <mapping class="com.mobilsiparis.hibernateclasses.productvotes.ProductVotes"/>
+        <mapping class="com.mobilsiparis.hibernateclasses.specialmenu.SpecialMenu"/>
+        <mapping class="com.mobilsiparis.hibernateclasses.hesap.Hesap"/>
+        <mapping class="com.mobilsiparis.hibernateclasses.hesapistek.HesapIstek"/>
+    </session-factory>
+    </hibernate-configuration>

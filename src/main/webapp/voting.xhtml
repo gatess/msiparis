@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+        >
+<h:head>
+    <title></title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="robots" content=""/>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-9"/>
+    <link href="css/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="css/table-style.css" type="text/css" rel="stylesheet"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta name="viewport" content="initial-scale = 1.0 maximum-scale = 1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+</h:head>
+<h:body styleClass="divi-aruba">
+    <div id="container">
+        <h1>Kahve bahane, sohbet şahane!</h1>
+        <div class="nav">
+              <h:form>
+                  <h:dataTable value="#{votingbean.names}" var="orders" >
+
+                      <h:column>
+                          <f:facet name="header">
+                              <h:outputText style="text-align: center" value="Ürün adi"/>
+                          </f:facet>
+                          <h:outputText value="#{orders.urunAdi} e 5 üzerinden kaç verirsiniz " />
+                      </h:column>
+                      <h:column>
+                          <f:facet name="header">
+                              <h:outputText value="Oy"/>
+                          </f:facet>
+                          <div id="oneradio">
+                              <p:rating value="#{orders.vote}" />
+                          </div>
+                      </h:column>
+
+                  </h:dataTable>
+                  <h:commandLink action="#{votingbean.doVoting}" value="Oylamayı yap"/>
+
+              </h:form>
+
+        </div>
+
+    </div>
+
+</h:body>
+</html>

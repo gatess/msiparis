@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<f:view contentType="text/html">
+    <f:event type="preRenderView" listener="#{siparisduzenlebean.workBeforeView}"/>
+</f:view>
+<h:head>
+    <title></title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="robots" content=""/>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-9"/>
+    <link href="./css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="css/styles.css" type="text/css" rel="stylesheet"/>
+
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta name="viewport" content="initial-scale = 1.0 maximum-scale = 1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+</h:head>
+<h:body styleClass="divi-aruba">
+
+    <div id="container">
+
+        <div class="nav">
+
+            <h:form>
+
+                <h:dataTable border="1" value="#{siparisduzenlebean.siparisListesi}" var="siparisler" styleClass="table table-responsive"
+                        >
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Ürün adi"/>
+                        </f:facet>
+                        #{siparisler.adi}
+
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Ürün Fiyati"/>
+                        </f:facet>
+                        #{siparisler.fiyat}
+                    </h:column>
+                    <h:column>
+
+                        <h:selectOneMenu value="#{siparisduzenlebean.selectedOzelDurum}"
+                                         converter="onemenuconverter"><br/>
+
+                            <f:selectItems id="secenekler" value="#{siparisler.ozelDurums}" var="ozelDurumlar"
+                                           itemValue="#{ozelDurumlar}" itemLabel="#{ozelDurumlar.durumAdi}"/>
+
+
+                        </h:selectOneMenu>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value=""/>
+                        </f:facet>
+                        <h:commandButton value="Siparislerden Cikart" action="siparisler.xhtml?faces-redirect=true"  styleClass="btn btn-lg btn-success btn-block"
+                                       actionListener="#{siparisbean.siparisCikart}">
+                            <f:attribute name="urunId" value="#{siparisler.urunId}"/>
+                            <f:param name="index" value="#{siparisbean.dataTable.rowIndex}"/>
+                        </h:commandButton>
+                    </h:column>
+                </h:dataTable>
+                Özel İsteklerinizi Belirtebilirsiniz:<br/>
+                <h:inputTextarea cols="20" rows="10" value="#{siparisduzenlebean.siparis.ozelİstek}"/>
+                <h:commandButton value="Siparişi ver" action="siparisler.xhtml?faces-redirect=true"    styleClass="btn btn-lg btn-success btn-block"
+                               actionListener="#{siparisduzenlebean.siparisiVer}"/>
+
+            </h:form>
+        </div>
+
+    </div>
+
+</h:body>
+</html>

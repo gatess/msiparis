@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title></title>
+    <!--
+     <META http-equiv=content-type content=text/html;charset=windows-1254>
+     <META http-equiv=content-type content=text/html;charset=x-mac-turkish>     -->
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-9"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="robots" content=""/>
+    <link href="./css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <link href="./css/styles.css" type="text/css" rel="stylesheet"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta name="viewport" content="width=device-width ,initial-scale = 1.0  "/>
+    <!--<meta name="apple-mobile-web-app-capable" content="yes"/>-->
+</h:head>
+<h:body>
+    <div id="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h:link outcome="index">
+                    <h:graphicImage value="./resources/default/images/#{applicationbean.user.logoAdi}" styleClass="cay img-responsive"/>
+                </h:link>
+            </div>
+
+        </div>
+        <h:form id="formMenu">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p:dataTable value="#{menubean.kategoriler}" var="kategori1" styleClass=" table table-responsive"
+                            >
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Kategoriler" style="text-align: center"/>
+                            </f:facet>
+                            <!-- <h:outputText style="text-align: center" value="#{kategori1.kategoriAdi}" />  -->
+                            <p:accordionPanel activeIndex="1">
+                                <p:tab title="#{kategori1.kategoriAdi}">
+                                    <p:dataTable value="#{kategori1.uruns}" var="urunler"
+                                                 styleClass="table table-responsive">
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText style="text-align: center" value="Ürün adi"/>
+                                            </f:facet>
+                                            <p:commandLink value="#{urunler.adi}" actionListener="#{menubean.showDetail}" oncomplete="PF('protuctDetail').show()" update=":formDetailDialog">
+                                                <f:attribute name="urunId" value="#{urunler.urunId}"/>
+                                            </p:commandLink>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText style="text-align: center" value="Fiyati"/>
+                                            </f:facet>
+                                            <h:outputText value="#{urunler.fiyat}"
+                                                          style="text-align: center; margin: 1px; padding: 1px;"/>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">
+                                                <h:outputText style="text-align: center" value=""/>
+                                            </f:facet>
+                                            <p:commandButton styleClass="btn btn-lg btn-success btn-block" value="Ekle"
+                                                             actionListener="#{siparisbean.siparisEkle}"
+                                                             update=":formMenu:pnlDataTable , :formDialog:tableSiparisler"  >
+                                                <f:attribute name="urunId" value="#{urunler.urunId}"/>
+                                                <!-- <f:ajax  execute="@form" render="@form form1:tablo"/> -->
+                                            </p:commandButton>
+                                        </p:column>
+                                    </p:dataTable>
+                                </p:tab>
+                            </p:accordionPanel>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+            <p:outputPanel id="pnlDataTable">
+                <p:dataTable id="tablo" border="1" value="#{siparisbean.siparisListesi}"
+                                                          var="siparisler" styleClass="table table-responsive"
+                                                          rendered="#{not empty siparisbean.siparisListesi}"
+                    widgetVar="orderTable">
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Urun adi"/>
+                    </f:facet>
+                    #{siparisler.adi}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Urun Fiyati"/>
+                    </f:facet>
+                    #{siparisler.fiyat}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value=""/>
+                    </f:facet>
+                    <p:commandButton value="Siparislerden Cikart"
+                                     styleClass="btn btn-lg btn-success btn-block"
+                                     actionListener="#{siparisbean.siparisCikart}" update=":formMenu:pnlDataTable"
+                               process="@all"     >
+                        <f:attribute name="urunId" value="#{siparisler.urunId}"/>
+                        <!-- <f:ajax  execute="@form" render="@form form1:tablo"/>-->
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable></p:outputPanel>
+
+            <div class="row">
+                <div class="col-lg-12">
+                      <p:commandButton value="Waffle" styleClass="btn btn-lg btn-success btn-block" onclick="PF('dialogWaffle').show()"/>
+                </div>
+            </div>
+
+
+            <p:commandButton value="Siparisi Ver" type="button" onclick="PF('dlg').show();"
+                             styleClass="btn btn-lg btn-success"/>
+        </h:form>
+
+
+        <p:dialog widgetVar="dialogWaffle" header="Waffle Malzemeleri" showEffect="clip" hideEffect="clip" dynamic="true" >
+            <p:panelGrid columns="2">
+
+                <h:outputLabel for="menu" value="Çikolatalar" />
+                <p:selectCheckboxMenu id="menu" value="#{menubean.secilenMalzemeler}" label="Çikolatalar"
+                                      filter="true" filterMatchMode="startsWith">
+                    <f:selectItems  value="#{menubean.cikolatalar}" />
+                </p:selectCheckboxMenu>
+                <h:outputLabel for="menu1" value="Meyveler" />
+                <p:selectCheckboxMenu id="menu1" value="#{menubean.secilenMalzemeler}" label="Meyveler"
+                                      filter="true" filterMatchMode="startsWith" >
+                    <f:selectItems  value="#{menubean.meyveler}" />
+                </p:selectCheckboxMenu>
+            </p:panelGrid>
+
+            <p:commandButton value="Tamam"  oncomplete="PF('dialogWaffle').hide()" />
+        </p:dialog>
+            <p:dialog id="dlgSiparis" header="Select Columns" widgetVar="dlg"
+                      appendToBody="true"  closable="true" closeOnEscape="true" showEffect="fade" hideEffect="fade"
+                      dynamic="true"
+                      modal="true">
+
+
+                <h:form id="formDialog">
+
+
+
+                <p:dataTable id="tableSiparisler" border="1" value="#{siparisduzenlebean.siparisListesi}"
+                             var="siparisler" styleClass="table table-responsive"
+                        >
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Urun adi"/>
+                        </f:facet>
+                        #{siparisler.adi}
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Urun Fiyati"/>
+                        </f:facet>
+                        #{siparisler.fiyat}
+                    </p:column>
+                    <p:column>
+                        <h:selectOneMenu value="#{siparisduzenlebean.selectedOzelDurum}"
+                                         converter="onemenuconverter"><br/>
+                            <f:selectItems id="secenekler" value="#{siparisler.ozelDurums}" var="ozelDurumlar"
+                                           itemValue="#{ozelDurumlar}" itemLabel="#{ozelDurumlar.durumAdi}"/>
+                        </h:selectOneMenu>
+                    </p:column>
+
+                </p:dataTable>
+
+
+                Ozel Isteklerinizi Belirtebilirsiniz:<br/>
+                <h:inputTextarea cols="30" rows="10" value="#{siparisduzenlebean.siparis.ozelİstek}"/>
+
+                <div class="modal-footer">
+                    <p:commandButton value="Siparisi ver" action="menu1.xhtml?faces-redirect=true"
+                                     styleClass="btn btn-lg btn-success btn-block"
+                                     actionListener="#{siparisduzenlebean.siparisiVer}"/>
+                </div>
+
+
+                </h:form>
+
+            </p:dialog>
+
+           <p:dialog id="detayDialog"    widgetVar="protuctDetail" showEffect="clip" hideEffect="clip" dynamic="true">
+
+              <h:form id="formDetailDialog">
+                 <h:panelGrid id="details" columns="2">
+                   <h:outputLabel for="urunadi" value="Urun adi"/>
+                   <p:inputText  value="#{menubean.selectedUrun.adi}" id="urunadi"/>
+
+                   <h:outputLabel for="fiyat" value="Fiyati"/>
+                   <p:inputText value="#{menubean.selectedUrun.fiyat}" id="fiyat"/>
+
+                   <h:outputLabel for="icindekiler" value="İçindekiler"/>
+                   <p:inputText id="icindekiler" value="#{menubean.selectedUrun.urunDetay.icindekiler}" />
+
+
+                 </h:panelGrid>
+                  <p:graphicImage  value="./resources/default/images/product_images/#{menubean.selectedUrun.urunDetay.resimAdi}" />
+              </h:form>
+           </p:dialog>
+
+
+    </div>
+</h:body>
+</html>

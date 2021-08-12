@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html">
+    <f:event type="preRenderView" listener="#{menubean.workBeforeView}"/>
+</f:view>
+<h:head>
+    <title></title>
+   <!--
+    <META http-equiv=content-type content=text/html;charset=windows-1254>
+    <META http-equiv=content-type content=text/html;charset=x-mac-turkish>     -->
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-9"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="robots" content=""/>
+
+    <link href="./css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="./css/styles.css" type="text/css" rel="stylesheet" />
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta name="viewport" content="width=device-width ,initial-scale = 1.0  " />
+    <!--<meta name="apple-mobile-web-app-capable" content="yes"/>-->
+</h:head>
+<h:body >
+
+
+    <div id="container">
+        <div class="row">
+            <div class="col-lg-12 visible-xs visible-sm">
+                <h:graphicImage value="resources/default/images/1223.png" styleClass="cay img-responsive"/>
+            </div>
+            <div class="col-lg-12 visible-md visible-lg">
+                <h:graphicImage value="resources/default/images/2323eds.png" styleClass="cay img-responsive" />
+            </div>
+        </div>
+        <h:form id="form1">
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h:dataTable border="1" value="#{menubean.kategoriler}" var="kategori1" styleClass="table table-responsive"
+                            >
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Kategoriler"/>
+                            </f:facet>
+
+                            <h:outputText style="text-align: center" value="#{kategori1.kategoriAdi}"/>
+
+
+                                <h:dataTable styleClass="table table-responsive" border="1" value="#{kategori1.uruns}" var="urunler">
+
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText style="text-align: center" value="Ürün adi"/>
+                                        </f:facet>
+                                        <h:outputText value="#{urunler.adi}"
+                                                      style="text-align: center; "/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText style="text-align: center" value="Fiyati"/>
+                                        </f:facet>
+                                        <h:outputText value="#{urunler.fiyat}"
+                                                      style="text-align: center; "/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText style="text-align: center" value=""/>
+                                        </f:facet>
+                                        <h:commandButton  value="Siparişlere Ekle"
+                                                       actionListener="#{siparisbean.siparisEkle}" style="padding: 9px 15px 13px;" styleClass="btn btn-lg btn-success btn-block">
+                                            <f:attribute name="urunId" value="#{urunler.urunId}"/>
+                                            <f:ajax  execute="@form" render="@form form1:tablo"/>
+                                        </h:commandButton>
+                                    </h:column>
+                                </h:dataTable>
+
+
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+                    <h:dataTable id="tablo" border="1" value="#{siparisbean.siparisListesi}" var="siparisler"
+                                 binding="#{siparisbean.dataTable}" rendered="#{not empty siparisbean.siparisListesi}">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Ürün adi"/>
+                            </f:facet>
+                            #{siparisler.adi}
+
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Ürün Fiyati"/>
+                            </f:facet>
+                            #{siparisler.fiyat}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                            <h:commandLink value="Siparislerden Cikart"
+                                           actionListener="#{siparisbean.siparisCikart}">
+                                <f:attribute name="urunId" value="#{siparisler.urunId}"/>
+                                <f:param name="index" value="#{siparisbean.dataTable.rowIndex}"/>
+                                <f:ajax  execute="@form" render="@form form1:tablo"/>
+                            </h:commandLink>
+                        </h:column>
+                    </h:dataTable>
+                    <h:commandLink value="Siparişi ver" action="menu.xhtml?faces-redirect=true"
+                                   actionListener="#{siparisbean.siparisiVer}"/>
+
+        </h:form>
+
+
+          </div>
+
+
+
+
+</h:body>
+</html>

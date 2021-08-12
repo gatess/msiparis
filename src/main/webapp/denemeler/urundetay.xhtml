@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title></title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="robots" content=""/>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-9"/>
+    <link href="../css/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/table-style.css" type="text/css" rel="stylesheet"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta name="viewport" content="initial-scale = 1.0 maximum-scale = 1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+</h:head>
+<h:body styleClass="divi-aruba">
+    <div id="container">
+
+        <div class="nav">
+
+            <h:form>
+
+                <h:dataTable value="#{productdetailbean.urunDetays}" var="products">
+
+                    <h:column>
+                        <f:facet  name="header">
+                            <h:outputText value="Urun Adi"/>
+                        </f:facet>
+                        #{products.urun.adi}
+                    </h:column>
+                    <h:column>
+                        <h:graphicImage library="default" name="images/product_images/#{products.resimAdi}" width="150" height="150" />
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
+    </div>
+
+</h:body>
+</html>

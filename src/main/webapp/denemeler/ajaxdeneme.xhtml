@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+
+    <title>Kafe Bahane</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="" />
+
+    <link href="../css/styles.css" type="text/css" rel="stylesheet" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta name="viewport" content="initial-scale = 1.0 maximum-scale = 1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+</h:head>
+<h:body styleClass="divi-aruba">
+    <div id="container" >
+        <h1>Kahve bahane, sohbet şahane!</h1>
+        <h:form>
+            <h:commandLink value="RASGELE SAYI" action="#{sayibean.rasgele}">
+                <f:ajax render="etkilenecekId" />
+            </h:commandLink>
+            <h:commandButton value="submit" action="#{sayibean.deneme}"/>
+            <br/>
+            <h:outputText id="etkilenecekId" value="#{sayibean.sayi}" />
+        </h:form>
+        <h:outputText  value="#{sayibean.js}" escape="false" rendered="#{sayibean.karar}" />
+        <div class="footer">
+
+<span class="call"><br/>
+      </span><a href="https://tr.foursquare.com/v/demir%C3%A7elikkanat-ocakba%C5%9F%C4%B1/526d587e498e4feaaf52e162"><img src="../images/Foursquare-icon.gif" width="32" height="32" longdesc="https://plus.google.com/u/0/111778885386201968745/posts"/></a><a href="https://www.facebook.com/DiviandTamarijnAruba?ref=hl"><img src="../images/facebook.gif" width="32" height="32" longdesc="https://www.facebook.com/DiviandTamarijnAruba?ref=hl"/></a><a href="https://plus.google.com/u/0/111778885386201968745/posts"><img src="../images/google+.gif" width="32" height="32" longdesc="https://plus.google.com/u/0/111778885386201968745/posts"/></a><a href="https://twitter.com/TamarijnAruba"><img src="../images/twitter.gif" width="32" height="32" longdesc="https://twitter.com/TamarijnAruba"/></a><a href="http://instagram.com/divitamarijnaruba#"><img src="../images/instagram.gif" width="32" height="32" longdesc="http://instagram.com/divitamarijnaruba#"/></a>
+
+
+        </div>
+    </div>
+</h:body>
+</html>

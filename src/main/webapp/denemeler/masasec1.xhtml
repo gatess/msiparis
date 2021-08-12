@@ -1,0 +1,41 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile" xmlns:h="http://java.sun.com/jsf/html"
+        contentType="text/html">
+    <pm:page title="Hello World" >
+        <!--<f:facet name="meta">
+            <meta name="apple-mobile-web-app-capabel" content="yes" />
+            <meta http-equiv="content-type" content="text/html; charset=ISO-8859-9"/>
+            <meta name="viewport" content="initial-scale = 1.0 maximum-scale = 1.0" />
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+        </f:facet> -->
+
+          <!--  <f:facet name="preinit">
+                <link type="text/css" rel="stylesheet"
+                      href="./css/styles.css" />
+                <link type="text/css" rel="stylesheet"
+                      href="./css/reset.css" />
+            </f:facet>    -->
+
+        <pm:view id="main" >
+            <pm:header title="Header" />
+            <pm:content>
+                <h:form>
+
+                          <div style="text-align: center">
+                        <h:graphicImage value="../resources/default/images/k3.jpg" width="300 px"/>
+                           </div>
+
+
+                        <h:selectOneMenu id="selectOneMenu" value="#{masabean.masaNo}">
+                            <f:selectItems value="#{masabean.options}"/><br/>
+                        </h:selectOneMenu>
+                    <h:commandButton value="Sec" action="#{masabean.navigate}"  />
+
+                </h:form>
+            </pm:content>
+        </pm:view>
+
+    </pm:page>
+</f:view>

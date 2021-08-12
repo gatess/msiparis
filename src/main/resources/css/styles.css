@@ -1,0 +1,187 @@
+@import url('reset.css');
+
+#container {
+	margin: 0 auto;
+	min-width: 320px;
+}
+.video #container {width: 320px;}
+p.video {margin-left: 10px;}
+	h1, nav, footer {
+		width: 320px;
+		margin: 0 auto;
+	}
+	.divi-aruba h1, .divi-tami h1 {
+		background: url(../images/k3.jpg) transparent top  no-repeat;
+		height: 200px;
+		margin: 0 auto 10px auto;
+		text-indent: -222em;
+		width:100%;
+	}
+		.divi-tami h1 {background-image: url(../images/bkgd-divi-tami.jpg);}
+		h1.no-photo {height: 105px;}
+		.divi-aruba h1.no-photo {background-image: url(../images/bkgd-divi-aruba2.gif);}
+		.divi-tami h1.no-photo {background-image: url(../images/bkgd-divi-tami2.gif);}
+	h2 {
+		color: #b7dc87;
+		font-size: 18px;
+		font-weight: bold;
+		line-height: 1.4;
+		margin: 0 0 15px 0;
+		text-align: center;
+	}
+	.callout {
+		font-size: 14px;
+		font-weight: bold;
+	}
+	#content {
+		padding: 0 20px !important;
+	}
+	
+	a.phone {
+		color: #fff;
+		text-decoration: underline;
+	}
+	div.photo {
+		border-top: 2px solid #00adc8;
+		margin: 20px 0 0 0;
+		padding: 20px 0 0 10px;
+	}
+	div.last {margin: 20px 0 40px;}
+	div.photo.first {border: 0;}
+	#container ul {
+		list-style: disc;
+		margin: 0 20px;
+	}
+	 li {margin: 0 0 10px 0;}
+	
+nav {margin-bottom: 20px;}
+	#container nav ul {margin: 0;}
+	nav li {display: inline;}
+		nav li a {
+			background: url(../images/bkgd-buttons.png) transparent top left no-repeat;
+			display: block;
+			font-size: 17px;
+			padding: 8px 15px 13px 15px;
+			margin: 0 0 3px 24px;
+			width: 236px;
+		}
+		nav li a, nav li a:visited, nav li a:link {color: #fff;}
+		nav li a:hover {text-decoration: none;}
+		nav li a.green {}
+			nav li a.green:hover {background-position: left -133px;}
+		nav li a.blue {background-position: left -45px;}
+			nav li a.blue:hover {background-position: left -178px;}
+		nav li a.pink {background-position: left -91px;}
+			nav li a.pink:hover {background-position: left -224px;}
+		nav li a.back {
+			background: url(../images/bkgd-back.png) transparent top left no-repeat;
+			padding: 9px 15px 13px 40px;
+		}
+			nav li a.back:hover {background-position: left -45px;}		
+		
+.footer{
+	color: #ccc;
+	font-size: 11px;
+	text-align: center;
+}
+	.reservations a {
+		color: #61ccdc;
+		font-size: 18px;
+		font-weight: bold;
+	}
+	.call {margin: 0;}
+		.call a {
+			background: url(../images/bkgd-phone.png) transparent top left no-repeat;
+			color: #fff;
+			display: block;
+			font-size: 16px;
+			margin: 0 auto;
+			padding: 3px 0 17px 25px;
+			width: 230px;
+		}
+		.call a span {color: #61ccdc;}
+	.main a {
+		color: #fff;
+		font-size: 14px;
+	}
+	.copyright {line-height: 2;}
+		.copyright a {
+			color: #fff;
+			font-size: 10px;
+		}
+		
+label {margin: 0 10px 0 0;}
+input[type=text] {
+	border: 0;
+	padding: 5px;
+	width: 285px;
+}
+textarea {
+	border: 0;
+	width: 295px;
+}
+.call a span {color: #61ccdc;}
+#submit {
+	background-color: #FF9966;
+	border: 1px solid #fff;
+	color: #fff;
+	font-weight: bold;
+	padding: 8px 15px;
+}
+/* Form */
+.reservations {
+	margin: 0 auto;
+	padding: 20px 0;
+	width: 290px;
+}
+
+#container .reservations ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+	.reservations li {
+		background-color: #66cedd;
+		float: left;
+		list-style: none;
+		margin: 0 1px 0 0;
+		padding: 9px 0 10px 0;
+		text-align: center;
+		width: 140px;
+		-moz-border-radius: 8px 8px 0 0;
+		-webkit-border-radius: 8px 8px 0 0;
+		border-radius: 8px 8px 0 0;
+	}
+.reservations li.active {background-color: #02aec6;}
+	.reservations a {
+		color: #fff;
+		font-size: 14px;
+		text-decoration: none;
+	}
+.reservations section {
+	clear: both;
+	padding: 20px 0 0 0;
+}
+.reservations label {
+	display: block;
+	font-weight: bold;
+}
+.reservations input[type="text"] {
+	padding: 4px 5px;
+	width: 235px;
+}
+.reservations img {vertical-align: top;}
+.reservations .left-side {float: left;}
+.reservations .submit {text-align: center;}
+.reservations input[type="submit"] {
+	background-color: #f8a283;
+	border: 0;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 15px 30px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-appearance: none;
+}

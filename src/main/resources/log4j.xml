@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <root>
+        <level value="INFO" />
+        <appender-ref ref="consoleAppender" />
+        <!--  <appender-ref ref="SSB_ROLLING_FILE" />  -->
+        <!--  <appender-ref ref="EMAIL" /> -->
+    </root>
+    <!-- send all error logs to my email address -->
+    <!--
+    <appender name="mailAppender" class="org.apache.log4j.net.SMTPAppender">
+        <param name="SMTPHost" value="smtp.erciyes.edu.tr" />
+        <param name="SMTPUsername" value="myuce@erciyes.edu.tr"/>
+        <param name="SMTPPassword" value="1......."/>
+        <param name="From" value="myuce@erciyes.edu.tr" />
+        <param name="To" value="mucayufa@gmail.com" />
+        <param name="Subject" value="[BLOG ERROR LOG] ErrorList" />
+
+        <param name="BufferSize" value="50" />
+
+        <param name="threshold" value="error" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ABSOLUTE} %5p %c{1}:%L - %m%n" />
+        </layout>
+    </appender>
+    -->
+    <appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ABSOLUTE} %5p %c{1}:%L - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="BlogLogError" class="org.apache.log4j.FileAppender">
+        <param name="File" value="blogError.log" />
+        <param name="Threshold" value="ERROR" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ABSOLUTE} %5p %c{1}:%L - %m%n"/>
+        </layout>
+    </appender>
+
+
+
+    <appender name="BlogLogInfo" class="org.apache.log4j.FileAppender">
+        <param name="File" value="blogInfo.log" />
+        <param name="Threshold" value="INFO" />
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="INFO" />
+            <param name="LevelMax" value="INFO" />
+        </filter>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd MMM yyyy HH:mm:ss,SSS} %5p %c{1}:%L - %m%n"/>
+        </layout>
+    </appender>
+
+    <!--Logger Names-->
+    <logger name="com.gates">
+        <appender-ref ref="BlogLogError"/>
+    </logger>
+    <logger name="com.gates.MobilSiparis">
+        <appender-ref ref="BlogLogInfo"/>
+    </logger>
+    <!--
+    <logger name="edu">
+        <appender-ref ref="mailAppender" />
+    </logger>
+    -->
+</log4j:configuration>
